@@ -12,26 +12,22 @@ A conservative **standby (always‑on) current estimate** for the baseline confi
 
 ```mermaid
 flowchart LR
-  USB[USB-C Receptacle] -->|VBUS| PMIC[BQ25180 Charger + Power-Path]
-  USB -->|D+/D-| ESD[USBLC6-2SC6Y ESD]
-  ESD -->|USB FS| MCU[nRF52840]
+  USB["USB-C Receptacle"] -->|VBUS| PMIC["BQ25180 Charger + Power-Path"]
+  USB -->|D+/D-| ESD["USBLC6-2SC6Y ESD"]
+  ESD -->|USB FS| MCU["nRF52840"]
 
-  PMIC -->|VBAT| BAT[1-cell Li-ion/LiPo]
-  BAT -->|VBAT| REG[RT6160A Buck-Boost -> 3V3]
+  PMIC -->|VBAT| BAT["1-cell Li-ion/LiPo"]
+  BAT -->|VBAT| REG["RT6160A Buck-Boost -> 3V3"]
   REG -->|3V3| MCU
 
-  MCU <-->|I2C| FG[MAX17048 Fuel Gauge]
-  MCU <-->|I2C| IMU[BMA421 Accelerometer]
-  MCU <-->|I2C| HAPT[DRV2605 Haptic Driver]
-  MCU -->|GPIO| BTN[Buttons: Up/Down/Enter]
+  MCU <-->|I2C| FG["MAX17048 Fuel Gauge"]
+  MCU <-->|I2C| IMU["BMA421 Accelerometer"]
+  MCU <-->|I2C| HAPT["DRV2605 Haptic Driver"]
+  MCU -->|GPIO| BTN["Buttons: Up/Down/Enter"]
 
-  MCU -->|SPI + GPIO| EPDIF[E-paper Connector]
-  MCU -->|PWR_EPD| EPDPOW[EPD Power Gate + Charge Pump]
+  MCU -->|SPI + GPIO| EPDIF["E-paper Connector"]
+  MCU -->|PWR_EPD| EPDPOW["EPD Power Gate and Charge Pump"]
 
-  MCU -->|RF (ANT)| RFNET[RF Match]
-  RFNET --> ANT[2.4 GHz Chip Antenna]
-
-  MCU <-->|SWD| SWD[SWD Pads/Connector]
 ```
 
 (Interconnects and blocks derived from the schematic.) 
